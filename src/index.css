@@ -8,35 +8,53 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 0 0% 8%;
+    --foreground: 45 100% 85%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 12%;
+    --card-foreground: 45 100% 85%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 12%;
+    --popover-foreground: 45 100% 85%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 0 84% 60%;
+    --primary-foreground: 45 100% 95%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 45 93% 47%;
+    --secondary-foreground: 0 0% 8%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 45 50% 65%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 45 93% 47%;
+    --accent-foreground: 0 0% 8%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 45 100% 95%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 0 0% 20%;
+    --input: 0 0% 16%;
+    --ring: 0 84% 60%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Casino Theme Colors */
+    --casino-red: 0 84% 60%;
+    --casino-gold: 45 93% 47%;
+    --casino-black: 0 0% 8%;
+    
+    /* Gradients */
+    --gradient-casino: linear-gradient(135deg, hsl(var(--casino-red)), hsl(var(--casino-gold)));
+    --gradient-luxury: linear-gradient(180deg, hsl(var(--casino-black)), hsl(0 0% 15%));
+    --gradient-gold: linear-gradient(45deg, hsl(var(--casino-gold)), hsl(50 100% 70%));
+    
+    /* Shadows */
+    --shadow-casino: 0 10px 30px -10px hsl(var(--casino-red) / 0.3);
+    --shadow-gold: 0 0 40px hsl(var(--casino-gold) / 0.4);
+    --shadow-luxury: 0 20px 40px -10px hsl(0 0% 0% / 0.5);
+    
+    /* Animations */
+    --transition-casino: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +119,51 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .bg-gradient-casino {
+    background: var(--gradient-casino);
+  }
+  
+  .bg-gradient-luxury {
+    background: var(--gradient-luxury);
+  }
+  
+  .bg-gradient-gold {
+    background: var(--gradient-gold);
+  }
+  
+  .shadow-casino {
+    box-shadow: var(--shadow-casino);
+  }
+  
+  .shadow-gold {
+    box-shadow: var(--shadow-gold);
+  }
+  
+  .shadow-luxury {
+    box-shadow: var(--shadow-luxury);
+  }
+  
+  .transition-casino {
+    transition: var(--transition-casino);
+  }
+  
+  .casino-card {
+    @apply bg-card border border-border/20 rounded-xl shadow-luxury backdrop-blur-sm;
+  }
+  
+  .casino-button {
+    @apply bg-gradient-casino hover:shadow-gold transition-casino;
+  }
+  
+  .gold-accent {
+    @apply text-secondary;
+  }
+  
+  .casino-glow {
+    @apply shadow-gold;
   }
 }
