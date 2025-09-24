@@ -103,7 +103,7 @@ const ListaPresentes = () => {
     const presente = presentes.find(p => p.id === id);
     toast({
       title: "Presente escolhido! 🎁",
-      description: `Obrigada por escolher: ${presente?.nome}. A aniversariante ficará muito feliz!`,
+      description: `Obrigada por escolher: ${presente?.nome}. A Hayde Rebeca ficará muito feliz!`,
     });
   };
 
@@ -112,11 +112,11 @@ const ListaPresentes = () => {
   return (
     <section id="presentes" className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
+          <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4 gold-accent">Lista de Presentes</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Escolha um presente especial para tornar esta celebração ainda mais memorável. 
-            Cada presente escolhido será uma surpresa maravilhosa!
+            Escolha um presente especial para a Hayde Rebeca e torne esta celebração ainda mais memorável. 
+            Cada presente escolhido será uma surpresa maravilhosa para ela!
           </p>
         </div>
 

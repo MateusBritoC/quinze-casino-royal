@@ -55,7 +55,7 @@ const ConfirmacaoPresenca = () => {
               </div>
               <h3 className="text-3xl font-bold mb-4 gold-accent">Presença Confirmada!</h3>
               <p className="text-lg text-muted-foreground mb-6">
-                Obrigada por confirmar sua presença, {formData.nome}! 
+                Obrigada por confirmar sua presença, {formData.nome}! A Hayde Rebeca ficará muito feliz em vê-lo(a) na festa.
               </p>
               <p className="text-muted-foreground">
                 Prepare-se para uma noite inesquecível de casino royale! 🎰
@@ -70,10 +70,10 @@ const ConfirmacaoPresenca = () => {
   return (
     <section id="confirmar" className="py-20 px-4 bg-gradient-luxury">
       <div className="max-w-2xl mx-auto">
-        <div className="text-center mb-12">
+          <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4 gold-accent">Confirme sua Presença</h2>
           <p className="text-xl text-muted-foreground">
-            Não perca esta noite especial! Confirme sua presença e venha celebrar comigo.
+            Não perca esta noite especial! Confirme sua presença e venha celebrar os 15 anos da Hayde Rebeca.
           </p>
         </div>
 

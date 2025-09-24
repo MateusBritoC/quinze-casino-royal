@@ -20,14 +20,17 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
         <div className="casino-card p-8 md:p-12 border-2 border-secondary/30">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-gold bg-clip-text text-transparent">
-            15 Anos
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-gold bg-clip-text text-transparent">
+            Hayde Rebeca
           </h1>
-          <h2 className="text-3xl md:text-4xl font-elegant mb-4 gold-accent">
-            Casino Royale
+          <h2 className="text-2xl md:text-3xl font-elegant mb-2 gold-accent">
+            15 Anos
           </h2>
+          <h3 className="text-3xl md:text-4xl font-elegant mb-4 gold-accent">
+            Casino Royale
+          </h3>
           <p className="text-xl md:text-2xl mb-8 text-muted-foreground">
-            Uma noite de luxo e diversão para celebrar seus 15 anos
+            Uma noite de luxo e diversão para celebrar os 15 anos da Hayde
           </p>
           <div className="space-y-4 md:space-y-0 md:space-x-6 md:flex md:justify-center">
             <Button 
