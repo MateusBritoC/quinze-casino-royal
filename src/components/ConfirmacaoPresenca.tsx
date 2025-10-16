@@ -2,47 +2,64 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
-import { Check, User, Phone, MessageSquare } from "lucide-react";
+import { Check, User, Plus, ArrowLeft } from "lucide-react";
+import ListaPresentes from "./ListaPresentes"; 
+
+const WHATSAPP_NUMBER = "+5592984122741";
 
 const ConfirmacaoPresenca = () => {
-  const [formData, setFormData] = useState({
-    nome: "",
-    telefone: "",
-    acompanhantes: "",
-    observacoes: ""
-  });
+  const [nomes, setNomes] = useState<string[]>([""]);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+  const handleNomeChange = (index: number, value: string) => {
+    setNomes((prev) => {
+      const novos = [...prev];
+      novos[index] = value;
+      return novos;
+    });
+  };
+
+  const adicionarCampo = () => {
+    setNomes((prev) => [...prev, ""]);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!formData.nome || !formData.telefone) {
+
+    const nomesValidos = nomes.filter((nome) => nome.trim() !== "");
+    if (nomesValidos.length === 0) {
       toast({
-        title: "Campos obrigatórios",
-        description: "Por favor, preencha seu nome e telefone.",
+        title: "Campo obrigatório",
+        description: "Preencha pelo menos um nome.",
         variant: "destructive"
       });
       return;
     }
 
-    // Simulate form submission
+    const mensagem =
+      `Confirmação de Presença!\n` +
+      `Convidados:\n` +
+      nomesValidos.map((nome, i) => `${i + 1}. ${nome}`).join("\n");
+
+    const url = `https://wa.me/${WHATSAPP_NUMBER.replace("+", "")}?text=${encodeURIComponent(mensagem)}`;
+
+    window.open(url, "_blank");
+
     setIsSubmitted(true);
     toast({
       title: "Presença confirmada! 🎉",
       description: "Obrigada por confirmar sua presença. Nos vemos na festa!",
     });
   };
+
+  const [showForm, setShowForm] = useState(true);
+
+  if (isSubmitted && !showForm) {
+    // Exibe a área de presentes após confirmação
+    return <ListaPresentes />;
+  }
 
   if (isSubmitted) {
     return (
@@ -55,11 +72,31 @@ const ConfirmacaoPresenca = () => {
               </div>
               <h3 className="text-3xl font-bold mb-4 gold-accent">Presença Confirmada!</h3>
               <p className="text-lg text-muted-foreground mb-6">
-                Obrigada por confirmar sua presença, {formData.nome}! A Hayde Rebeca ficará muito feliz em vê-lo(a) na festa.
+                Obrigada por confirmar sua presença! A Hayde Rebeca ficará muito feliz em vê-los na festa.
               </p>
               <p className="text-muted-foreground">
                 Prepare-se para uma noite inesquecível de casino royale! 🎰
               </p>
+              <Button
+                type="button"
+                size="lg"
+                className="mt-8 w-full casino-button text-xl py-6"
+                onClick={() => setShowForm(false)}
+              >
+                Ir para a área de presentes
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                className="mt-4 w-full flex items-center justify-center gap-2"
+                onClick={() => {
+                  setIsSubmitted(false);
+                  setShowForm(true);
+                }}
+              >
+                <ArrowLeft className="w-5 h-5" />
+                Voltar
+              </Button>
             </CardContent>
           </Card>
         </div>
@@ -70,10 +107,10 @@ const ConfirmacaoPresenca = () => {
   return (
     <section id="confirmar" className="py-20 px-4 bg-gradient-luxury">
       <div className="max-w-2xl mx-auto">
-          <div className="text-center mb-12">
+        <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4 gold-accent">Confirme sua Presença</h2>
           <p className="text-xl text-muted-foreground">
-            Não perca esta noite especial! Confirme sua presença e venha celebrar os 15 anos da Hayde Rebeca.
+            Informe o nome completo dos convidados que irão à festa.
           </p>
         </div>
 
@@ -83,75 +120,40 @@ const ConfirmacaoPresenca = () => {
               RSVP - Casino Royale
             </CardTitle>
             <CardDescription className="text-center text-lg">
-              Por favor, preencha os dados abaixo para confirmar sua presença
+              Adicione todos os nomes dos convidados
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-2">
-                <Label htmlFor="nome" className="text-lg flex items-center gap-2">
-                  <User className="w-4 h-4" />
-                  Nome Completo *
-                </Label>
-                <Input
-                  id="nome"
-                  name="nome"
-                  value={formData.nome}
-                  onChange={handleInputChange}
-                  placeholder="Seu nome completo"
-                  className="text-lg p-4"
-                  required
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="telefone" className="text-lg flex items-center gap-2">
-                  <Phone className="w-4 h-4" />
-                  Telefone *
-                </Label>
-                <Input
-                  id="telefone"
-                  name="telefone"
-                  value={formData.telefone}
-                  onChange={handleInputChange}
-                  placeholder="(00) 00000-0000"
-                  className="text-lg p-4"
-                  required
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="acompanhantes" className="text-lg">
-                  Número de Acompanhantes
-                </Label>
-                <Input
-                  id="acompanhantes"
-                  name="acompanhantes"
-                  value={formData.acompanhantes}
-                  onChange={handleInputChange}
-                  placeholder="Quantas pessoas irão com você?"
-                  className="text-lg p-4"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="observacoes" className="text-lg flex items-center gap-2">
-                  <MessageSquare className="w-4 h-4" />
-                  Observações
-                </Label>
-                <Textarea
-                  id="observacoes"
-                  name="observacoes"
-                  value={formData.observacoes}
-                  onChange={handleInputChange}
-                  placeholder="Alguma observação especial? (alergias, restrições, etc.)"
-                  className="text-lg p-4 resize-none h-24"
-                />
-              </div>
-
-              <Button 
-                type="submit" 
-                size="lg" 
+              {nomes.map((nome, idx) => (
+                <div className="space-y-2" key={idx}>
+                  <Label htmlFor={`nome-${idx}`} className="text-lg flex items-center gap-2">
+                    <User className="w-4 h-4" />
+                    Nome Completo {idx + 1}
+                  </Label>
+                  <Input
+                    id={`nome-${idx}`}
+                    name={`nome-${idx}`}
+                    value={nome}
+                    onChange={e => handleNomeChange(idx, e.target.value)}
+                    placeholder="Nome completo"
+                    className="text-lg p-4"
+                    required={idx === 0}
+                  />
+                </div>
+              ))}
+              <Button
+                type="button"
+                variant="secondary"
+                className="w-full casino-button text-lg py-4 flex items-center justify-center gap-2"
+                onClick={adicionarCampo}
+              >
+                <Plus className="w-5 h-5" />
+                Adicionar outro convidado
+              </Button>
+              <Button
+                type="submit"
+                size="lg"
                 className="w-full casino-button text-xl py-6"
               >
                 Confirmar Presença 🎰

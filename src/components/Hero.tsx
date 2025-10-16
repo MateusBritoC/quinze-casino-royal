@@ -48,6 +48,14 @@ const Hero = () => {
             >
               Escolher Presente
             </Button>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground text-lg px-8 py-4"
+              onClick={() => window.open("https://www.google.com/maps/place/Dulce´s+Festas+Buffet+e+Decorações/@-3.1178252,-59.9951135,15z/data=!3m1!4b1!4m6!3m5!1s0x926c052190000001:0xd07a91b86a3a08dd!8m2!3d-3.1178467!4d-59.9848352!16s%2Fg%2F1tt8dbdt?entry=ttu&g_ep=EgoyMDI1MTAxNC4wIKXMDSoASAFQAw%3D%3D", "_blank")}
+            >
+              Localização
+            </Button>
           </div>
         </div>
       </div>
