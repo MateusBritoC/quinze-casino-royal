@@ -27,7 +27,7 @@ const Hero = () => {
             15 Anos
           </h2>
           <h3 className="text-3xl md:text-4xl font-elegant mb-4 gold-accent">
-            Casino Royale
+            Las Vegas
           </h3>
           <p className="text-xl md:text-2xl mb-8 text-muted-foreground">
             Uma noite de luxo e diversão para celebrar os 15 anos da Hayde

@@ -19,7 +19,7 @@ import youcom from "../assets/youcom.png";
 
 interface Presente {
   id: number;
-  nome: string;
+  nome: React.ReactNode;
   icon: React.ReactNode;
 }
 
@@ -155,6 +155,31 @@ const presentes: Presente[] = [
         }}
       />
     )
+  },
+  {
+  id: 9,
+  nome: (
+    <div className="text-center">
+      <div className="text-xl font-bold gold-accent">Pix</div>
+      <div className="text-sm text-muted-foreground mt-2 leading-tight">
+        Chave: <strong>05847336233</strong><br />
+        Banco: <strong>Nubank</strong><br />
+        Nome: <strong>Hayde Rebeca da Costa Tomé</strong>
+      </div>
+    </div>
+  ),
+  icon: (
+    <img
+      src={fichahayde}
+      alt="Pix"
+      className="w-24 h-24 object-contain"
+      style={{
+        boxShadow: "0 0 32px 8px #FFD700",
+        borderRadius: "50%",
+        background: "none",
+      }}
+      />
+    )
   }
 ];
 
@@ -188,9 +213,9 @@ const ListaPresentes = () => {
         <div className="inline-block bg-secondary/10 rounded-xl px-6 py-4">
           <span className="text-lg font-semibold gold-accent">Observação:</span>
           <span className="block text-base text-muted-foreground mt-2">
-            Tamanho de camisas: <span className="font-bold">M</span> &nbsp;|&nbsp;
-            Calça: <span className="font-bold">35</span> &nbsp;|&nbsp;
-            Sapatos: <span className="font-bold">36/37</span>
+            Tamanho de Blusas: <span className="font-bold">M</span> &nbsp;|&nbsp;
+            Calça: <span className="font-bold">38/40</span> &nbsp;|&nbsp;
+            Calçados: <span className="font-bold">36/37</span> 
           </span>
         </div>
       </div>
