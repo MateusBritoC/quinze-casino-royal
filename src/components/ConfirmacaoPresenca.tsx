@@ -105,7 +105,7 @@ const ConfirmacaoPresenca = () => {
 
         <Card className="casino-card border-secondary/20">
           <CardHeader>
-            <CardTitle className="text-2xl font-bold text-center gold-accent">RSVP - Casino Royale</CardTitle>
+            <CardTitle className="text-2xl font-bold text-center gold-accent">RSVP - Las Vegas</CardTitle>
             <CardDescription className="text-center text-lg">Adicione todos os nomes dos convidados</CardDescription>
           </CardHeader>
 
